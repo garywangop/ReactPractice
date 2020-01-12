@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Clock</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react-dom.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.21.1/babel.min.js"></script>
+    <link rel="stylesheet" href="./index.css">
+    <meta charset="utf-8" />
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+    class TodoItem extends React.Component {
+        constructor(props) {
+            super(props);
+            this.state = { done: false };
+            this.onClick = this.onClick.bind(this);
+        }
+        onClick() {
+            this.setState(prevState => ({ done: !prevState.done }));
+        }
+        render() {
+            const textStyle = { 'textDecoration': this.state.done ? 'line-through' : 'none' };
+            return (
+                <div>
+                    <button className="done-btn" onClick={this.onClick}>
+                        {this.state.done ? 'Undo' : 'Done'}
+                    </button>
+                    <span className="todo-label" style={textStyle}>
+                    Hello World!
+                    </span>
+                </div>
+            );
+        }
+    }
+
+    // TodoList
+    class TodoList extends React.Componenet {
+        render() {
+            // 把todos iterate到这里
+            return(
+                <div>
+                    {this.props.todos.map((todo) => {
+                        return <button disabled></button>
+                        }
+
+                    )}
+                </div>
+            );
+        }
+    }
+    const todos = [
+        { id : 1, text : 'First'},
+        { id : 2, text : 'Second'},
+        { id : 3, text : 'Third'}
+    ];
+    ReactDOM.render(<TodoItem />, document.getElementById('root'));
+
+</script>
+</body>
+</html>
